@@ -28,7 +28,7 @@ async function getArtist(id) {
 
 // === Components ===
 
-/** Shows the name of Artist that navigates to more information when clicked */
+/** Artist name that shows more details about the artist when clicked */
 function ArtistListItem(artist) {
   // TODO
 }

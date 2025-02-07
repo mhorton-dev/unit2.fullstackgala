@@ -22,7 +22,7 @@ The [Fullstack Convention Center](https://fsa-crud-2aa9294fe819.herokuapp.com/ap
    ```html
    <li><a href="#selected">{artist name}</a></li>
    ```
-3. Complete the `ArtistsList` component. It should return a `ul` with each artist in state as an `ArtistListItem`.
+3. Complete the `ArtistsList` component. It should return a `<ul class="lineup">` with each artist in state as an `ArtistListItem`.
 
 Once you see the names of all the artists from the API, designate a new person to be the Driver and continue to the next section.
 
