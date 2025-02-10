@@ -30,15 +30,15 @@ Once you see the names of all the artists from the API, designate a new person t
 
 4. Complete `getArtist` to fetch the requested artist from the API with the given ID. It should update `selectedArtist` in state, then rerender the page.
 5. Add an event listener to `ArtistListItem` so that when it is clicked, it will call `getArtist` with the corresponding id.
-6. Complete the `SelectedArtist` component so that when there is a selected artist in state, it will return an element with this structure:
+6. Complete the `ArtistDetails` component so that when there is a selected artist in state, it will return an element with this structure:
    ```html
-   <article class="artist">
-     <h2>{artist name} #{artist id}</h2>
+   <section class="artist">
+     <h3>{artist name} #{artist id}</h3>
      <figure>
        <img alt="{artist name}" src="{artist imageUrl}" />
      </figure>
      <p>{artist description}</p>
-   </article>
+   </section>
    ```
 
 Congrats! You should now be able to click on the name of an artist in the line up to see more information about that artist.

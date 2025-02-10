@@ -38,8 +38,8 @@ function ArtistList() {
   // TODO
 }
 
-/** A card with information about an Artist */
-function SelectedArtist() {
+/** Detailed information about the selected artist */
+function ArtistDetails() {
   if (!selectedArtist) {
     const $p = document.createElement("p");
     $p.textContent = "Please select an artist to learn more.";
@@ -60,12 +60,13 @@ function render() {
         <ArtistList></ArtistList>
       </section>
       <section id="selected">
-        <SelectedArtist></SelectedArtist>
+        <h2>Artist Details</h2>
+        <ArtistDetails></ArtistDetails>
       </section>
     </main>
   `;
   $app.querySelector("ArtistList").replaceWith(ArtistList());
-  $app.querySelector("SelectedArtist").replaceWith(SelectedArtist());
+  $app.querySelector("ArtistDetails").replaceWith(ArtistDetails());
 }
 
 async function init() {
