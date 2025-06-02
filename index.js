@@ -8,22 +8,43 @@
 
 // === Constants ===
 const BASE = "https://fsa-crud-2aa9294fe819.herokuapp.com/api";
-const COHORT = "/"; // Make sure to change this!
+const COHORT = "/2505-FTB-ET-WEB-FT"; // Make sure to change this!
 const RESOURCE = "/artists";
 const API = BASE + COHORT + RESOURCE;
 
 // === State ===
-let artists = [];
+const state = {artists:[]};
 let selectedArtist;
 
 /** Updates state with all artists from the API */
 async function getArtists() {
-  // TODO
+  try {
+    let artistsJSON = [];
+    console.log("getArtists API URL", API)
+    const response = await fetch(`${API}`)
+    if(await response.status === 200){
+      artistsJSON = await response.json()
+      console.log("Artists JSON", artistsJSON.data)
+      if (artistsJSON.success)
+        state.artists =  artistsJSON.data
+    }
+  }catch(err){
+    const error = "getArtists error"
+    error.case = err
+    throw error;
+  }
 }
 
 /** Updates state with a single artist from the API */
 async function getArtist(id) {
-  // TODO
+  try {
+    console.log("get single artist url", `${API}/id`)
+  }catch(err){
+    const error = "getArtist error"
+    errorCase.case = err.case
+    error.console(err, err)
+    throw error
+  }
 }
 
 // === Components ===
@@ -34,8 +55,32 @@ function ArtistListItem(artist) {
 }
 
 /** A list of names of all artists */
-function ArtistList() {
-  // TODO
+async function ArtistList() {
+  try {
+    await getArtists()
+    console.log("ArtistList function, state.artists", state.artists)
+    const listSection = document.querySelector("#lineup")
+    const lineupHeader = document.createElement('h2')
+    //get [Promise Object] in section html before anything gets added. DO NOT REMOVE
+    listSection.innerText = ''
+    //Make all section HTML from scratch
+    lineupHeader.innerText = `Lineup`
+    listSection.appendChild(lineupHeader)
+    state.artists.forEach(artist =>  {
+      const artistName = document.createElement('p')
+      selectedArtist = artist
+      artistName.addEventListener("click", () => ArtistDetails())
+      artistName.setAttribute("id", artist.id)
+      artistName.innerText = artist.name
+      listSection.appendChild(artistName)
+      }, (err) => {
+        console.err
+      })
+  } catch(err) {
+    const error = "Artist List error";
+    const errCase =err.case
+    console.error(error, err, errCase);
+  }
 }
 
 /** Detailed information about the selected artist */
@@ -55,7 +100,7 @@ function render() {
   $app.innerHTML = `
     <h1>Fullstack Gala</h1>
     <main>
-      <section>
+      <section id = "lineup" class = "lineup">
         <h2>Lineup</h2>
         <ArtistList></ArtistList>
       </section>
@@ -71,7 +116,7 @@ function render() {
 
 async function init() {
   await getArtists();
-  render();
+  await render();
 }
 
-init();
+init()
